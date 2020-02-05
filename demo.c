@@ -14,6 +14,7 @@ typedef struct Data
 //data2 <<==>> (struct Data)
 
 ********************************/
+
 /***连续存储***/
 
 #include <stdio.h>
