@@ -1,19 +1,88 @@
-# DayDayUp
+注意事项
+================================
+1. 如果单链表中的头指针已经有指向【非乱指状态】，并且在函数中不修改头指针的指向，则可以不需要二级指针，直接使用一级指针即可修改,**修改头指针**才需要用到**二级指针**。
 
-## 大学学习之路正式开启
-
-从**今天**开始，*我*开始学习。
-
-- 西红柿
-- 番茄
-- 土豆
-
-```cpp
-#include<iostream>
-using namespace std;
-int main()
+#### 二级指针
+```c
+bool InitList(qNode *List,int n)
 {
-    cout << "hello world." <<endl;
-    return 0;
+	qNode p,q;
+	int i;
+	ElemType e;
+	(*List)=(qNode)malloc(sizeof(Node));//重新改了头的指向【需要用到二级指针】
+	if(*List==NULL)
+	{
+		printf("1.分配内存失败\n");
+		return false;
+	}
+	(*List)->next = NULL;    // 先建立一个带头结点的单链表
+	q=*List;
+
+	for(i=0;i<n;i++)
+	{
+		scanf("%d", &e);
+		if((p=(qNode)malloc(sizeof(Node)))==NULL)
+		{
+			printf("2.分配内存失败！\n");
+			return false;
+		}
+		p->next=NULL;
+		p->data=e;
+		q->next=p;
+		q=p;
+  	}
+	return true;
+}
+
+int main(void)
+{
+	int n;
+	...
+	qNode List;			//无指向
+	InitList(&List,n);
+	......
 }
 ```
+
+
+#### 一级指针
+```c
+bool InitList(qNode List,int n)
+{
+	qNode p,q;
+	int i;
+	ElemType e;
+	q=List;
+
+	for(i=0;i<n;i++)
+	{
+		scanf("%d", &e);
+		if((p=(qNode)malloc(sizeof(Node)))==NULL)
+		{
+			printf("2.分配内存失败！\n");
+			return false;
+		}
+		p->next=NULL;
+		p->data=e;
+		q->next=p;
+		q=p;
+  	}
+	return true;
+}
+
+int main(void)
+{
+	int n;
+	...
+	qNode List=(qNode)malloc(sizeof(Node));   //有指向
+	if(List==NULL)
+	{
+		printf("1.分配内存失败！\n");
+		return false;
+	}
+	List->next=NULL;
+	InitList(List,n);
+	......
+}
+```
+
