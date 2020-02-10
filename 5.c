@@ -10,15 +10,21 @@ typedef struct LNode
 	struct LNode *next;
 }LNode,*PLNode;
 
-int CreateLink_L(PLNode L,int n)
+int CreateLink_L(PLNode *L,int n)
 {
 // 创建含有n个元素的单链表
 	PLNode p,q;
 	int i;
 	ElemType e;
+	(*L)=(PLNode)malloc(sizeof(LNode));
+	if(*L==NULL)
+	{
+		printf("  1  分配内存失败\n");
+		return ERROR;
+	}
 
-	L->next = NULL;              // 先建立一个带头结点的单链表
-	q=L;
+	(*L)->next = NULL;              // 先建立一个带头结点的单链表
+	q=*L;
 
 	for(i=0;i<n;i++)
 	{
@@ -113,13 +119,13 @@ int LinkDelete_L(PLNode L,int i, ElemType *e){
 
 int main()
 {
-	PLNode T = (PLNode)malloc(sizeof(LNode));
+	PLNode T;
 	int a,n,i;
 	ElemType x, e;
 	printf("Please input the init size of the linklist:\n");
 	scanf("%d",&n);
 	printf("Please input the %d element of the linklist:\n", n);
-	if(CreateLink_L(T,n)==OK)     // 判断链表是否创建成功，请填空
+	if(CreateLink_L(&T,n)==OK)     // 判断链表是否创建成功，请填空
 	{
 		printf("A Link List Has Created.\n");
 		LoadLink_L(T);
