@@ -104,9 +104,8 @@ int main()
 	char str[15];
 	int pos;
 	name people;
-	while(1)
+	while(~scanf("%s",str))
 	{
-		scanf("%s",str);
 		if(strcmp(f3,str)==0)
 		{
 			show(&list);
@@ -129,7 +128,5 @@ int main()
 			printf("%d\n",pos);
 		}
 	}
-
-
 	return 0;
 }
