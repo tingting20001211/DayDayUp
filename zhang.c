@@ -96,7 +96,7 @@ void delete(qSqlist list ,name people)
 int main()
 {
 	char f1[]="insert";
-	char f2[]="deleta";
+	char f2[]="delete";
 	char f3[]="show";
 	char f4[]="search";
 	Sqlist list;
